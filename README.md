@@ -1,19 +1,24 @@
 # MiniLISP
-## compilering
-```
-#compile main
-g++ -c main.cc
-#compile bison
-bison -d -o yacc.tab.c final_MiniLISP.y
-g++ -c -g -I.. yacc.tab.c 
-#compile flex
-flex -o lex.yy.c final_MiniLISP.l
-g++ -c -g -I.. lex.yy.c
-#compile and link bison and flex and main
-g++ -o final_MiniLISP yacc.tab.o lex.yy.o main.o -ll
+## Compile
 
-rm lex.yy.c lex.yy.o yacc.tab.c yacc.tab.h yacc.tab.o main.o
-```
+> compile main  
+
+```g++ -c main.cc```  
+> compile bison  
+
+```bison -d -o yacc.tab.c final_MiniLISP.y```  
+```g++ -c -g -I.. yacc.tab.c```  
+> compile flex  
+
+```flex -o lex.yy.c final_MiniLISP.l```  
+```g++ -c -g -I.. lex.yy.c```
+> compile and link bison, flex and main  
+
+```g++ -o final_MiniLISP yacc.tab.o lex.yy.o main.o -ll```  
+> remove redundent files  
+
+```rm lex.yy.c lex.yy.o yacc.tab.c yacc.tab.h yacc.tab.o main.o```  
+
 ## Operations
 > Numerical Operators
 
@@ -75,7 +80,6 @@ num_op          : plus
 logical_op      : and_op
                 | or_op
                 | not_op
-                ;
         and_op          : '(' AND exp exps ')'
         or_op           : '(' OR exp exps ')'
         not_op          : '(' NOT exp ')'
@@ -109,9 +113,11 @@ ids             :
 
 ```printTree``` display AST structure  
 ```insertNode``` construct the AST  
-```traverseTree``` traverse AST and perfom corresponding behavior  
+```traverseTree``` traverse AST and perfom corresponding behaviors  
 
 ## Basic Features
+> complete
+
 |Feature| Description|
 |-|-|
 |1. Syntax Validation |Print “syntax error” when parsing invalid syntax |
@@ -123,8 +129,19 @@ ids             :
 |7. Function |Able to declare and call an anonymous function (can't recursion) |
 |8. Named Function| Able to declare and call a named function |
 
+## Bonus Features
+> not complete
+
+|Feature| Description|
+|-|-|
+|1. Recursion| Support recursive function call|
+|2. Type Checking| Print error messages for type errors |
+|3. Nested Function |Nested function (static scope) |
+|4. First-class Function| Able to pass functions, support closure |
+
 ## Type checking
-not complete
+> not complete
+
 |Op| Parameter Type| Output Type|
 |-|-|-|
 |+, -, *, /, mod| Number(s)| Number|
