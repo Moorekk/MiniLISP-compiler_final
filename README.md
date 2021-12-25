@@ -1,5 +1,19 @@
-# MiniLISP-compiler_final
+# MiniLISP
+## compilering
+```
+#compile main
+g++ -c main.cc
+#compile bison
+bison -d -o yacc.tab.c final_MiniLISP.y
+g++ -c -g -I.. yacc.tab.c 
+#compile flex
+flex -o lex.yy.c final_MiniLISP.l
+g++ -c -g -I.. lex.yy.c
+#compile and link bison and flex and main
+g++ -o final_MiniLISP yacc.tab.o lex.yy.o main.o -ll
 
+rm lex.yy.c lex.yy.o yacc.tab.c yacc.tab.h yacc.tab.o main.o
+```
 ## Operations
 > Numerical Operators
 
