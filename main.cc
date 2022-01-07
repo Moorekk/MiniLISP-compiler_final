@@ -129,6 +129,7 @@ Data traverseTree(Node *ptr)
         case _minus:
             return Data(l - r);
         case _divide:
+            if(r == 0) return Data(0);
             return Data(l / r);
         case _modulus:
             return Data(l % r);
@@ -158,8 +159,8 @@ Data traverseTree(Node *ptr)
         case _get_variable:
             if (fun_table.find((string)l) != fun_table.end()) // variable in function table
                 return traverseTree(fun_table[(string)l].node);
-            if (table.find((string)l) == table.end()) // not in both table
-                cout << "Variable not define!\n"; // error
+            // if (table.find((string)l) == table.end()) // not in both table
+            //     cout << "Variable not define!\n"; // error
             return traverseTree(table[(string)l].node);
         case _fun_exp: // r take by fun_call
             return r;
@@ -177,13 +178,13 @@ Data traverseTree(Node *ptr)
                     return Data(0);
                 }
                 ptr->left = table[(string)l].node->left;
-                cout << "table[" << (string)l << "] = " << table[(string)l].node->token << endl;
-                printTree(ptr->left);
-                cout << endl;
+                // cout << "table[" << (string)l << "] = " << table[(string)l].node->token << endl;
+                // printTree(ptr->left);
+                // cout << endl;
             }
             vector<string> vec_vars = traverseTree(ptr->left->left);
             vector<type> vec_exp = r;
-            cout << "length: " << vec_vars.size() << ", " << vec_exp.size() << endl;
+            // cout << "length: " << vec_vars.size() << ", " << vec_exp.size() << endl;
             for (int i = 0; i < vec_exp.size(); i++)
             {
                 // cout<< "fun binding: " << vec_vars[i] <<", " << vec_exp[i].node->indata->I << endl;
@@ -199,7 +200,7 @@ Data traverseTree(Node *ptr)
         case _param:
             return Data(type{ptr->left->left, nullptr}); //l: exp
         case _fun_name:                            //l: string
-            cout << "fun_name: " << (string)l << endl;
+            // cout << "fun_name: " << (string)l << endl;
             return l;
         case _if_exp:{
             // l: bool

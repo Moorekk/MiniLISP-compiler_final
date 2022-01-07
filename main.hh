@@ -19,7 +19,9 @@ enum token_type
     _INT, _BOOL, _ID,
     _ADD, _SUB, _MUL, _DIV, _MOD, _GRT, _SML, _EQL, _AND, _OR, _NOT, _PRINT_NUM, _PRINT_BOOL, _IF, _DEF, _FUN
 };
-struct inData{
+
+struct inData
+{
     int I;
     bool B;
     string S;

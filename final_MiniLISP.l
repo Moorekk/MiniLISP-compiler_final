@@ -37,7 +37,8 @@ ID          {letter}({letter}|{digit}|\-)*
 "print-bool" {return PRINT_BOOL;}
 "if"        {return IF;}
 "define"    {return DEF;}
-"lambda"    {return FUN;}
+"lambda"|"fun"    {return FUN;}
+
 {Boolean}   {yylval.indata = new inData{0, stb(yytext), "\0"};return BOOL;}
 {Number}    {yylval.indata = new inData{atoi(yytext), true, "\0"};return INT;}
 {ID}        {yylval.indata = new inData{0, true, strdup(yytext)};return ID;}
